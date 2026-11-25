@@ -37,6 +37,14 @@ section{padding:4.5rem 0}
 .ms{flex:0 0 min(320px,82vw);scroll-snap-align:center;position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;text-align:left}
 .ms::before{content:"";position:absolute;top:-1.4rem;left:1.1rem;width:18px;height:18px;border-radius:50%;background:var(--terra);border:3px solid var(--gold)}
 .ms b{font:800 2rem var(--hd);color:var(--gold);display:block}
+.ms .hint{display:inline-block;margin-top:.45rem;color:var(--gold);font-size:.82rem;font-weight:600}
+.coin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:1.5rem 0}
+.coin-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem}
+.coin-card img{display:block;width:100%;height:auto;max-height:340px;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:.8rem}
+.coin-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem;margin:1rem 0}
+.coin-facts div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8rem}
+.coin-facts strong{display:block;color:var(--gold);font-size:1.15rem}
+.note{font-size:.88rem;color:var(--mut)}
 .ms .more{display:none;margin-top:.6rem;border-top:1px solid var(--line);padding-top:.6rem}
 .ms[aria-expanded=true] .more{display:block}
 .pill{background:var(--mata);color:#F4F1EA;border:0;border-radius:99px;padding:.4rem 1rem;margin-top:.5rem}
@@ -137,8 +145,8 @@ footer{background:#0D0D0D;color:#cfc8ba;padding:2rem 0;font-size:.9rem}
 <figure class="coin-view"><img src="fotos/trio-axe-reverso.jpg" alt="Reversos das três moedas comemorativas do Trio Axé, de 1988" loading="lazy"><figcaption><strong>Reversos — conjunto de três moedas.</strong> Valor de 100 cruzados e inscrição Brasil. Substitua este arquivo pela montagem com os três reversos.</figcaption></figure>
 </div>
 <div class="info-grid">
-<div class="info-card"><h3>Características numismáticas</h3><ul><li><strong>Ano:</strong> 1988</li><li><strong>Valor facial:</strong> 100 cruzados</li><li><strong>Material:</strong> aço inoxidável</li><li><strong>Técnica:</strong> cunhagem</li><li><strong>Diâmetro registrado:</strong> cerca de 31 mm</li><li><strong>Peso registrado:</strong> aproximadamente 10 g por peça</li><li><strong>Produção:</strong> Casa da Moeda do Brasil, Rio de Janeiro</li></ul></div>
-<div class="info-card"><h3>Significado histórico</h3><p>O conjunto transforma a moeda em suporte de memória. Ao representar diferentes gerações negras, a emissão amplia a visibilidade de pessoas negras na narrativa nacional e associa a comemoração do centenário à palavra “axé”, de origem africana. A peça, porém, também convida a uma leitura crítica: cem anos após 1888, a homenagem simbólica não significava que as desigualdades herdadas da escravidão estivessem superadas.</p><p class="src">Dados de identificação e iconografia: registros do Museu da Abolição (acervo museológico).</p></div>
+<div class="info-card"><h3>Características numismáticas</h3><ul><li><strong>Ano:</strong> 1988</li><li><strong>Valor facial:</strong> 100 cruzados</li><li><strong>Material:</strong> aço inoxidável</li><li><strong>Técnica:</strong> cunhagem</li><li><strong>Diâmetro registrado:</strong> cerca de 31 mm</li><li><strong>Peso registrado:</strong> 9,95 g por peça</li><li><strong>Tiragem:</strong> 200.000 unidades por variante (homem, mulher e criança), total catalogado de 600.000 moedas</li><li><strong>Produção:</strong> Casa da Moeda do Brasil</li></ul></div>
+<div class="info-card"><h3>Significado histórico</h3><p>O conjunto transforma a moeda em suporte de memória. Ao representar diferentes gerações negras, a emissão amplia a visibilidade de pessoas negras na narrativa nacional e associa a comemoração do centenário à palavra “axé”, de origem africana. A peça, porém, também convida a uma leitura crítica: cem anos após 1888, a homenagem simbólica não significava que as desigualdades herdadas da escravidão estivessem superadas.</p><p class="src">Tiragem: o Banco Central registra 200.000 unidades para a variante infantil (código Cz-26); catálogos numismáticos registram 200.000 unidades para cada variante, totalizando 600.000 peças na série. Características técnicas e circulação: Banco Central do Brasil.</p></div>
 </div>
 <p class="note">Nota de conservação: “Flor de Cunho” descreve o estado de conservação de um exemplar específico, não uma característica automática de toda a emissão. Use essa classificação apenas se as moedas fotografadas realmente estiverem sem sinais de circulação.</p>
 </div></section>
@@ -264,7 +272,7 @@ const T=[
 ["2010–2012","Políticas de igualdade racial","O Estatuto da Igualdade Racial (Lei nº 12.288/2010) e a Lei de Cotas nas instituições federais (Lei nº 12.711/2012) marcaram avanços institucionais no enfrentamento das desigualdades."],
 ["2023","20 de Novembro: feriado nacional","A Lei nº 14.759/2023 declarou feriado nacional o Dia Nacional de Zumbi e da Consciência Negra, ampliando o reconhecimento público da data em todo o país."]
 ]
-T.forEach((m,i)=>{const b=E('button','ms',`<b>${m[0]}</b><h3>${m[1]}</h3><div class="more"><p>${m[2]}</p><span class="pill" role="button" tabindex="0">Ouvir</span></div>`);b.setAttribute('aria-expanded',i==0);
+T.forEach((m,i)=>{const b=E('button','ms',`<b>${m[0]}</b><h3>${m[1]}</h3><span class="hint">Clique/toque para conhecer este marco ↓</span><div class="more"><p>${m[2]}</p><span class="pill" role="button" tabindex="0">Ouvir</span></div>`);b.setAttribute('aria-expanded',i==0);
  b.onclick=e=>{if(e.target.classList.contains('pill')){say(m[1]+'. '+m[2]);return}b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true')};$('#tl').append(b)});
 const tl=$('#tl');tl.style.setProperty('--tw',tl.scrollWidth+'px');
 tl.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'){tl.scrollBy({left:320,behavior:'smooth'})}if(e.key==='ArrowLeft'||e.key==='ArrowUp'){tl.scrollBy({left:-320,behavior:'smooth'})}};
