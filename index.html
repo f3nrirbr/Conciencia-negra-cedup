@@ -67,7 +67,7 @@ svg.map{width:100%;max-width:440px;margin:auto;display:block}
 .fl[aria-pressed=true] .fi{transform:rotateY(180deg)}
 .fa,.fb{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:1rem;display:flex;flex-direction:column;justify-content:flex-end;text-align:left;overflow:hidden}
 .fa{background:linear-gradient(160deg,#12100E,#2a1d10);color:#F4F1EA;border:1px solid var(--gold)}
-.fa i{position:absolute;top:-10px;right:-10px;font:800 8rem/1 var(--hd);color:var(--gold);opacity:.22;font-style:normal}
+.ph{position:absolute;inset:0;background:#D9A441}.ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(1) contrast(1.15);mix-blend-mode:multiply}.fa::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#12100E 6%,#12100E00 62%)}.fa h3,.fa small{position:relative;z-index:1}
 .fa h3{position:relative}
 .fb{transform:rotateY(180deg);background:var(--terra);color:#fff;font-size:.95rem;justify-content:space-between}
 .fb h3{font-size:1.3rem}
@@ -190,6 +190,8 @@ Object.keys(D).forEach(k=>{const b=E('button','',k);b.setAttribute('role','tab')
 let seen=false;new IntersectionObserver((e,o)=>{if(e[0].isIntersecting&&!seen){seen=true;dTab("Mercado de trabalho")}},{threshold:.3}).observe($('#stats'));
 const yr=$('#yr');const sim=()=>{$('#yl').textContent=yr.value;$('#yo').textContent=(1840*12*yr.value).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})+' a menos';};yr.oninput=sim;sim();
 /* galeria */
+/* Fotos: coloque os arquivos na pasta fotos/ (ou troque pelos endereços das imagens). Sem foto, o cartão mostra só o fundo escuro. */
+const FOTOS={"Lélia Gonzalez":"fotos/lelia-gonzalez.jpg","Abdias do Nascimento":"fotos/abdias-do-nascimento.jpg","Carolina Maria de Jesus":"fotos/carolina-maria-de-jesus.jpg","Conceição Evaristo":"fotos/conceicao-evaristo.jpg","Sueli Carneiro":"fotos/sueli-carneiro.jpg","Emicida":"fotos/emicida.jpg","Jaqueline Goes de Jesus":"fotos/jaqueline-goes-de-jesus.jpg"};
 const G=[["Lélia Gonzalez","Amefricanidade","Filósofa e antropóloga, ajudou a fundar o Movimento Negro Unificado e criou conceitos para pensar racismo, sexismo e cultura no Brasil e nas Américas."],
 ["Abdias do Nascimento","Quilombismo","Fundou o Teatro Experimental do Negro em 1944 e foi deputado e senador. Propôs o quilombismo como projeto político."],
 ["Carolina Maria de Jesus","Quarto de Despejo","Catadora de papel e escritora, registrou o cotidiano da favela do Canindé no diário publicado em 1960."],
@@ -197,7 +199,7 @@ const G=[["Lélia Gonzalez","Amefricanidade","Filósofa e antropóloga, ajudou a
 ["Sueli Carneiro","Dispositivo de racialidade","Filósofa e fundadora do Geledés, Instituto da Mulher Negra, referência no combate ao racismo e ao sexismo."],
 ["Emicida","Rap como educação","Rapper e empresário paulistano, criou o selo Laboratório Fantasma e lançou o álbum AmarElo, em 2019."],
 ["Jaqueline Goes de Jesus","Ciência pública","Biomédica baiana que integrou a equipe que sequenciou o genoma do coronavírus no Brasil em 2020."]];
-G.forEach(g=>{const b=E('button','fl',`<div class="fi"><div class="fa"><i aria-hidden="true">${g[0][0]}</i><h3>${g[0]}</h3><small>Toque para virar</small></div><div class="fb"><div><h3>${g[1]}</h3><p>${g[2]}</p></div><span class="pill" role="button" tabindex="0" style="background:#12100E;align-self:flex-start">Ouvir</span></div></div>`);
+G.forEach(g=>{const b=E('button','fl',`<div class="fi"><div class="fa">${FOTOS[g[0]]?`<div class="ph"><img src="${FOTOS[g[0]]}" alt="Retrato de ${g[0]}" loading="lazy" onerror="this.parentNode.remove()"></div>`:''}<h3>${g[0]}</h3><small>Toque para virar</small></div><div class="fb"><div><h3>${g[1]}</h3><p>${g[2]}</p></div><span class="pill" role="button" tabindex="0" style="background:#12100E;align-self:flex-start">Ouvir</span></div></div>`);
  b.setAttribute('aria-pressed',false);b.setAttribute('aria-label',g[0]+'. Virar cartão');
  b.onclick=e=>{if(e.target.classList.contains('pill')){say(g[0]+'. '+g[1]+'. '+g[2]);return}b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')};$('#gal').append(b)});
 /* ação */
