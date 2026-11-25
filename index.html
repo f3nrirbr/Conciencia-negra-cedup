@@ -48,7 +48,7 @@ svg.map{width:100%;max-width:440px;margin:auto;display:block}
 @keyframes rp{0%{transform:scale(.6);opacity:.8}100%{transform:scale(2.2);opacity:0}}
 .pt .c{fill:#F4F1EA;stroke:var(--terra);stroke-width:4}
 .pt text{fill:#F4F1EA;font-size:15px;font-weight:600;paint-order:stroke;stroke:#12100E;stroke-width:3px}
-#sheet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;min-height:170px}
+#sheet{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:14px;padding:1.2rem;min-height:170px}
 @media(max-width:799px){#sheet.open{position:fixed;left:0;right:0;bottom:0;z-index:25;border-radius:20px 20px 0 0;max-height:60vh;overflow:auto;padding-bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px #000a}}
 .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
 .tabs button,.chip{border:1.5px solid var(--gold);background:transparent;border-radius:99px;padding:.45rem 1rem}
@@ -188,26 +188,4 @@ let seen=false;new IntersectionObserver((e,o)=>{if(e[0].isIntersecting&&!seen){s
 const yr=$('#yr');const sim=()=>{$('#yl').textContent=yr.value;$('#yo').textContent=(1840*12*yr.value).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})+' a menos';};yr.oninput=sim;sim();
 /* galeria */
 const G=[["Lélia Gonzalez","Amefricanidade","Filósofa e antropóloga, ajudou a fundar o Movimento Negro Unificado e criou conceitos para pensar racismo, sexismo e cultura no Brasil e nas Américas."],
-["Abdias do Nascimento","Quilombismo","Fundou o Teatro Experimental do Negro em 1944 e foi deputado e senador. Propôs o quilombismo como projeto político."],
-["Carolina Maria de Jesus","Quarto de Despejo","Catadora de papel e escritora, registrou o cotidiano da favela do Canindé no diário publicado em 1960."],
-["Conceição Evaristo","Escrevivência","Escritora que parte da vivência de mulheres negras para criar literatura. Autora de Ponciá Vicêncio."],
-["Sueli Carneiro","Dispositivo de racialidade","Filósofa e fundadora do Geledés, Instituto da Mulher Negra, referência no combate ao racismo e ao sexismo."],
-["Emicida","Rap como educação","Rapper e empresário paulistano, criou o selo Laboratório Fantasma e lançou o álbum AmarElo, em 2019."],
-["Jaqueline Goes de Jesus","Ciência pública","Biomédica baiana que integrou a equipe que sequenciou o genoma do coronavírus no Brasil em 2020."]];
-G.forEach(g=>{const b=E('button','fl',`<div class="fi"><div class="fa"><i aria-hidden="true">${g[0][0]}</i><h3>${g[0]}</h3><small>Toque para virar</small></div><div class="fb"><div><h3>${g[1]}</h3><p>${g[2]}</p></div><span class="pill" role="button" tabindex="0" style="background:#12100E;align-self:flex-start">Ouvir</span></div></div>`);
- b.setAttribute('aria-pressed',false);b.setAttribute('aria-label',g[0]+'. Virar cartão');
- b.onclick=e=>{if(e.target.classList.contains('pill')){say(g[0]+'. '+g[1]+'. '+g[2]);return}b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')};$('#gal').append(b)});
-/* ação */
-const q=t=>`<a href="https://www.google.com/search?q=${encodeURIComponent(t)}" target="_blank" rel="noopener">${t}</a>`;
-const R=[["Livros","Editora Malê"],["Livros","Pallas Editora"],["Eventos","Feira Preta"],["Tecnologia","PretaLab"],["Organizações","Geledés"]];let df="Todos";
-function dir(){$('#df').innerHTML='';["Todos","Livros","Eventos","Tecnologia","Organizações"].forEach(c=>{const b=E('button','chip',c);b.setAttribute('aria-pressed',c===df);b.onclick=()=>{df=c;dir()};$('#df').append(b)});
- $('#dir').innerHTML=R.filter(r=>df==="Todos"||r[0]===df).map(r=>`<li>${q(r[1])}<br><small>${r[0]}</small></li>`).join('')}dir();
-$('#edu').innerHTML=["Quarto de Despejo, Carolina Maria de Jesus","Ponciá Vicêncio, Conceição Evaristo","Racismo Estrutural, Silvio Almeida","Pequeno Manual Antirracista, Djamila Ribeiro","Ôrí, documentário de Raquel Gerber (1989)","AmarElo: É Tudo Pra Ontem, documentário (2020)"].map(t=>`<li>${q(t)}</li>`).join('');
-const A=["Vou ler uma autora ou autor negro neste mês","Vou comprar de negócios liderados por pessoas negras","Vou questionar o racismo quando eu presenciar","Vou apoiar a Lei 10.639 na escola dos meus filhos ou na minha","Vou ouvir mais do que falar e aprender com a história"];let ch="";
-A.forEach(a=>{const b=E('button','opt',a);b.setAttribute('aria-pressed',false);b.onclick=()=>{ch=a;document.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#cc').textContent=a+". #ConsciênciaNegra #20deNovembro"};$('#pl').append(b)});
-const txt=()=>ch?$('#cc').textContent:'';const msg=m=>{$('#cm').textContent=m};
-$('#cp').onclick=async()=>{if(!txt())return msg('Escolha uma atitude primeiro.');try{await navigator.clipboard.writeText(txt());msg('Texto copiado.')}catch(e){msg('Não foi possível copiar. Selecione o cartão e copie.')}};
-$('#sh').onclick=async()=>{if(!txt())return msg('Escolha uma atitude primeiro.');try{await navigator.share({text:txt()})}catch(e){msg('Compartilhamento indisponível aqui. Use Copiar texto.')}};
-</script>
-</body>
-</html>
+["Abdias do Nascimento","Quilombismo","Fundou o Teatro Experimental do Negro em 1944 e foi deputado e senador. Propôs o quilombismo como pro
