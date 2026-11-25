@@ -301,14 +301,16 @@ let seen=false;new IntersectionObserver((e,o)=>{if(e[0].isIntersecting&&!seen){s
 const yr=$('#yr');const sim=()=>{$('#yl').textContent=yr.value;$('#yo').textContent=(9.6*160*12*yr.value).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})+' de diferença estimada';};yr.oninput=sim;sim();
 /* galeria */
 /* Fotos: coloque os arquivos na pasta fotos/ (ou troque pelos endereços das imagens). Sem foto, o cartão mostra só o fundo escuro. */
-const FOTOS={"Lélia Gonzalez":"fotos/lelia-gonzalez.jpg","Abdias do Nascimento":"fotos/abdias-do-nascimento.jpg","Carolina Maria de Jesus":"fotos/carolina-maria-de-jesus.jpg","Conceição Evaristo":"fotos/conceicao-evaristo.jpg","Sueli Carneiro":"fotos/sueli-carneiro.jpg","Emicida":"fotos/emicida.jpg","Jaqueline Goes de Jesus":"fotos/jaqueline-goes-de-jesus.jpg"};
+const FOTOS={"Lélia Gonzalez":"fotos/lelia-gonzalez.jpg","Abdias do Nascimento":"fotos/abdias-do-nascimento.jpg","Carolina Maria de Jesus":"fotos/carolina-maria-de-jesus.jpg","Conceição Evaristo":"fotos/conceicao-evaristo.jpg","Sueli Carneiro":"fotos/sueli-carneiro.jpg","Emicida":"fotos/emicida.jpg","Jaqueline Goes de Jesus":"fotos/jaqueline-goes-de-jesus.jpg","Machado de Assis":"fotos/machado-de-assis.jpg","Nilo Peçanha":"fotos/nilo-pecanha.jpg"};
 const G=[["Lélia Gonzalez","Amefricanidade","Filósofa e antropóloga, ajudou a fundar o Movimento Negro Unificado e criou conceitos para pensar racismo, sexismo e cultura no Brasil e nas Américas."],
 ["Abdias do Nascimento","Quilombismo","Fundou o Teatro Experimental do Negro em 1944 e foi deputado e senador. Propôs o quilombismo como projeto político."],
 ["Carolina Maria de Jesus","Quarto de Despejo","Catadora de papel e escritora, registrou o cotidiano da favela do Canindé no diário publicado em 1960."],
 ["Conceição Evaristo","Escrevivência","Escritora que parte da vivência de mulheres negras para criar literatura. Autora de Ponciá Vicêncio."],
 ["Sueli Carneiro","Dispositivo de racialidade","Filósofa e fundadora do Geledés, Instituto da Mulher Negra, referência no combate ao racismo e ao sexismo."],
 ["Emicida","Rap como educação","Rapper e empresário paulistano, criou o selo Laboratório Fantasma e lançou o álbum AmarElo, em 2019."],
-["Jaqueline Goes de Jesus","Ciência pública","Biomédica baiana que integrou a equipe que sequenciou o genoma do coronavírus no Brasil em 2020."]];
+["Jaqueline Goes de Jesus","Ciência pública","Biomédica baiana que integrou a equipe que sequenciou o genoma do coronavírus no Brasil em 2020."],
+["Machado de Assis","Realismo Brasileiro","Escritor e fundador da Academia Brasileira de Letras, consolidou o realismo na literatura brasileira e é considerado o maior romancista do país."],
+["Nilo Peçanha","Presidência","Primeiro presidente negro do Brasil, governou de 1909 a 1910 e criou as Escolas de Aprendizes e Artífices, embrião da Rede Federal de Educação Profissional."]];
 G.forEach(g=>{const b=E('button','fl',`<div class="fi"><div class="fa">${FOTOS[g[0]]?`<div class="ph"><img src="${FOTOS[g[0]]}" alt="Retrato de ${g[0]}" loading="lazy" onerror="this.parentNode.remove()"></div>`:''}<h3>${g[0]}</h3><small>Toque para virar</small></div><div class="fb"><div><h3>${g[1]}</h3><p>${g[2]}</p></div><span class="pill" role="button" tabindex="0" style="background:#12100E;align-self:flex-start">Ouvir</span></div></div>`);
  b.setAttribute('aria-pressed',false);b.setAttribute('aria-label',g[0]+'. Virar cartão');
  b.onclick=e=>{if(e.target.classList.contains('pill')){say(g[0]+'. '+g[1]+'. '+g[2]);return}b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')};$('#gal').append(b)});
