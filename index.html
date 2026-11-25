@@ -92,6 +92,10 @@ footer{background:#0D0D0D;color:#cfc8ba;padding:2rem 0;font-size:.9rem}
 </style>
 </head>
 <body>
+<audio id="bgMusic" loop preload="none">
+    <source src="audio/pulsodaterra.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+</audio>
 <header class="hero">
 <svg class="bg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="800" height="600" fill="#12100E"/>
 <g><circle cx="560" cy="230" r="170" fill="#D99B26"/><circle cx="560" cy="230" r="120" fill="#C84B31"/><circle cx="560" cy="230" r="60" fill="#12100E"/><path d="M360 600C380 380 470 340 560 340S740 380 760 600Z" fill="#12100E" stroke="#D99B26" stroke-width="4"/><circle cx="250" cy="300" r="110" fill="#2D5A27"/><path d="M60 600C80 430 160 400 250 400S420 430 440 600Z" fill="#C84B31"/><circle cx="660" cy="470" r="70" fill="#2D5A27" opacity=".8"/></g>
@@ -151,10 +155,27 @@ try{
 const $=s=>document.querySelector(s),E=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h)e.innerHTML=h;return e};
 const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';speechSynthesis.speak(u)}catch(e){}};
 $('#go').onclick=()=>$('#jornada').scrollIntoView({behavior:'smooth'});
-/* som ambiente sintetizado, mudo por padrão */
-let ac,tm;$('#snd').onclick=function(){const on=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',on);this.textContent='Som: '+(on?'ligado':'desligado');
- if(!on){clearInterval(tm);return}
- try{ac=ac||new AudioContext();let k=0;tm=setInterval(()=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.frequency.setValueAtTime(k%4==2?160:90,t);o.frequency.exponentialRampToValueAtTime(50,t+.25);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+.3);k++},420)}catch(e){}};
+/* música ambiente em MP3, desligada por padrão */
+const music=$('#bgMusic'),soundButton=$('#snd');
+music.volume=0.35;
+soundButton.onclick=async function(){
+ if(!music.paused){
+  music.pause();
+  soundButton.setAttribute('aria-pressed','false');
+  soundButton.textContent='Som: desligado';
+  return;
+ }
+ try{
+  await music.play();
+  soundButton.setAttribute('aria-pressed','true');
+  soundButton.textContent='Som: ligado';
+ }catch(error){
+  soundButton.setAttribute('aria-pressed','false');
+  soundButton.textContent='Som: indisponível';
+  console.error('Erro ao reproduzir música:',error);
+ }
+};
+music.addEventListener('ended',()=>{soundButton.setAttribute('aria-pressed','false');soundButton.textContent='Som: desligado'});
 /* linha do tempo */
 const T=[["1695","Zumbi e Dandara dos Palmares","Palmares reuniu milhares de pessoas na Serra da Barriga e combinou resistência militar com organização social própria. Zumbi foi morto em 20 de novembro de 1695."],
 ["1888","A abolição inacabada","A Lei Áurea, de 13 de maio, extinguiu a escravidão sem políticas de integração, terra, educação ou reparação para a população negra."],
