@@ -234,9 +234,7 @@ footer{background:#0D0D0D;color:#cfc8ba;padding:2rem 0;font-size:.9rem}
 try{
 
 const $=s=>document.querySelector(s),E=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h)e.innerHTML=h;return e};
-    
 const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';speechSynthesis.speak(u)}catch(e){}};
-    
 $('#go').onclick=()=>$('#jornada').scrollIntoView({behavior:'smooth'});
 /* música ambiente em MP3, desligada por padrão */
 const music=$('#bgMusic'),soundButton=$('#snd');
